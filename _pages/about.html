@@ -44,20 +44,46 @@ redirect_from:
 </style>
 
 <p>
-  I am a master student at RWTH Aachen in electrical engineering, pursuing deep interest and curiosity in deep learning. 
-  During my bachelor study I was working with <a
-    href="https://andrbaer.github.io/">Andreas Bär</a> under the supervision of <a
-    href="https://www.tu-braunschweig.de/ifn/institut/abt/sv/prof-dr-ing-tim-fingscheidt">Prof. Dr-Ing. Tim Fingscheidt</a>.
-    There, I was helping Andreas on few projects such as exploring the ensemble models of object detection module and semantic segmentation.
-    Following that we were preparing for a submission on the Workshop on Autonomous Driving CVPR 2023. In our paper we improve the framework that
-    predicts the performance of semantic segmentation models.
+  I am a master student at RWTH Aachen in electrical engineering, pursuing deep interest and curiosity in deep learning. <br><br>
+  
+  My interest in the field rose when I was active as a working student in the automobile industry, specifically at IAV, for over few years.
+  During that time I had the opportunity to work in a engaging team, where I learned a lot about the on-board diagnostic systems on vehicles 
+  by analysing the measurement data picked up by all kinds of sensors. My task in the team was to maintain the codebase that automises the
+  evaluation and the analysis depending on the requirements and to further develop the functions for visualisation.<br><br>
+  Sometime during the pandemic I was assigned to help another team in setting up a pipeline to perform an abration analysis of water and oil pumps
+  using measurement data, such as vibration, temperature, bear rings, etc. That was where I got to dive deep into the tool used for the project 
+  that centers around Python and its dependencies such as Numpy, SciPy, and Numpy. At the end of the initial project we made use of Scikit-learn
+  for building a regression model. Since then I've been fascinated with the topics and trying to facilitise my curiosity in the following projects at the campus.<b></b>
 
-    Before that I was active a worker student in the automobile industry, specifically at IAV, for over few years.
-    During that time I had the opportunity to work in a engaging team, where I learned to . 
+  <br><br>During and after my bachelor thesis I was working with <a
+    href="https://andrbaer.github.io/">Andreas Bär</a> under the supervision of <a
+    href="https://www.tu-braunschweig.de/ifn/institut/abt/sv/prof-dr-ing-tim-fingscheidt">Prof. Dr-Ing. Tim Fingscheidt</a>
+    in the Signal Processing and Machine Learning. In my bachelor thesis I investigated the possibility of extending the pre-built
+    framework to predict the performance of semantic segmentation. To be precise, I tried to extend the framework to object detection.
+    The model behind the framework consists of the segmentation model of encoder-decoder structure and an additional decoder that reconstructs the input.
+    In short, the model should makes use of the quality of the reconstructed image to predict using regression the quality of the produced segmentation map.
+    The challenge lies upon the fact that a typical object detection produces, I assume, different kind of representation
+    from a typical semantic segmentation. According to our observation a different approach from the vanilla ones is needed to accomplish this function transfer.
+    Instead, I decided to make an extension in the domain semantic segmentation, where I investigated the use of other metrics to evaluate the image quality, i.e. instead of
+    the classical peak-to-signal noise ratio I applied the structural similarity metrics such as SSIM and MS-SSIM which produces a better performance prediction accuracy.
+    By incorporating the structural similarity loss in the optimization not only the correlation of both tasks but also the prediction error can be improved. <br><br>
+
+    Upon completing my bachelor thesis in parallel I was helping Andreas on few projects such as exploring the ensemble models of object detection module
+    and semantic segmentation.<br><br>
+    Following that we were preparing for a submission on the Workshop on Autonomous Driving CVPR 2023. In our paper we improve the framework that
+    predicts the performance of semantic segmentation models. Specifically, we firstly made improvements by performing architectural changes in the model, more efficient
+    optimization methods. By applying a combination of these two the prediction error and the correlation are improved.<br><br>
+    
+    Secondly, we laid a foundation of which range the framework extendable is, since in the first paper
+    only one particular backbone, which is ResNet-18, was investigated. However, due to the developments in computing capability bigger and more complex architectures are
+    becoming ubiquitous. We studied the extendability on deeper models, from ResNet-50, ConvNeXt to Transformer-based architecture such as Swin Transformer. Furthermore,
+    we also studied the extendability on other segmentation head such as the state-of-the-art architecture DeepLabV3+. Our paper was accepted and we hope to 
+    contribute on making artificial intelligence safer.<br><br>
+
 </p>
 <h2>News</h2>
 <ul>
-  <li><b>April 2023</b>: Performance Prediction <a href="https://github.com/ifnspaml/PerfPredRecV2">PerfPred</a> is accepted for WACV CVPR 2023.</li>
+  <li><b>April 2023</b>: Our paper <a href="https://github.com/ifnspaml/PerfPredRecV2">PerfPredRecV2</a> is accepted for WACV CVPR 2023.</li>
 </ul>
 
 <h2>Selected Publications</h2>
