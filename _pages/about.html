@@ -1,0 +1,133 @@
+---
+permalink: /
+title: "Daniel Kusuma"
+excerpt: "About me"
+author_profile: true
+redirect_from:
+- /about/
+- /about.html
+---
+
+<style>
+  .special-link,
+  .special-link:visited,
+  .special-link:hover,
+  .special-link:active {
+    color: inherit;
+    text-decoration: none !important;
+  }
+
+  .teaser {
+    padding-bottom: 50px;
+    width: 200px;
+  }
+
+  .collapsible-content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+  }
+
+  .p-bibtex {
+    font-size: 12px;
+    margin-bottom: 0px;
+    max-width: auto;
+    text-align: left;
+  }
+
+  .paper-entry {
+    display: inline-block;
+    max-width: 100%;
+  }
+</style>
+
+<p>
+  I am a master student at RWTH Aachen in electrical engineering, pursuing deep interest and curiosity in deep learning. 
+  During my bachelor study I was working with <a
+    href="https://andrbaer.github.io/">Andreas Bär</a> under the supervision of <a
+    href="https://www.tu-braunschweig.de/ifn/institut/abt/sv/prof-dr-ing-tim-fingscheidt">Prof. Dr-Ing. Tim Fingscheidt</a>.
+</p>
+<!-- <h2>News</h2>
+<ul>
+  <li><b>Mar 2023</b>: Our workshop <a href="https://opensun3d.github.io/">OpenSun3D</a> on Open-Vocabulary 3D Scene
+    Understanding will be held in conjunction with <a
+      href="https://iccv2023.thecvf.com/list.of.accepted.workshops-363300-4-31-33.php">ICCV'23</a> in Paris.</li>
+  <li><b>Jan 2023</b>: <a href="https://jonasschult.github.io/Mask3D/">Mask3D</a> was accepted at ICRA 2023.</li>
+</ul> -->
+
+<h2>Selected Publications</h2>
+
+<div class="paper-entry">
+    <a href="https://point2vec.ka.codes/" class="special-link">
+      <p>
+        <!-- <video style="padding-bottom: 0px; margin-top: -30px;" class="align-left teaser" autoplay muted loop>
+          <source src="https://jonasschult.github.io/images/teaser/point2vec.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video> -->
+        <b>Improvements to Image Reconstruction-Based Performance Prediction for Semantic Segmentation in Highly Automated Driving</b>
+        </br>
+        Andreas Bär, <u>Daniel Kusuma</u>*, Tim Fingscheidt
+        </br>
+        arXiv, 2023.
+        </br>
+        <a class="btn btn--research" href="https://github.com/ifnspaml/PerfPredRecV2/">
+          <span class="icon" style="margin-right: 0em;">
+            <i class="fas fa-bolt"></i>
+          </span>
+          <span>Source Code</span>
+        </a>
+        <!-- <a class="btn btn--research" href="https://arxiv.org/abs/2303.16570">
+          <span class="icon" style="margin-right: 0em;">
+            <i class="fas fa-file-pdf"></i>
+          </span>
+          <span>Paper</span>
+        </a> -->
+        <a class="btn btn--research collapsible" id="collapse_point2vec">
+          <span class="icon" style="margin-right: 0em;">
+            <i class="fas fa-book"></i>
+          </span>
+          <span>BibTex</span>
+        </a>
+        <!-- <a class="btn btn--research" href="https://point2vec.ka.codes/">
+          <span class="icon" style="margin-right: 0em;">
+            <i class="fab fa-github"></i>
+          </span>
+          <span>Code</span>
+        </a> -->
+      </p>
+    </a>
+    <div id="content_point2vec" class="collapsible-content">
+      <pre class="p-bibtex">
+  {% raw %}
+  @InProceedings{Baer2023,
+    author    = {Andreas Bär and Daniel Kusuma and Tim Fingscheidt},
+    booktitle = {Proc. of CVPR - Workshops},
+    title     = {{Improvements to Image Reconstruction-Based Performance Prediction for Semantic Segmentation in Highly Automated Driving}},
+    year      = {2023},
+    address   = {Vancouver, BC, Canada}
+    month     = jun,
+    pages     = {1--11},
+  }
+  {% endraw %}
+      </pre>
+    </div>
+  </div>
+
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function () {
+      id = this.id;
+      var content = document.getElementById(id.replace("collapse", "content"));
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  }
+</script>
