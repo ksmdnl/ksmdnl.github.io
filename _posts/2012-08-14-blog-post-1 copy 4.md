@@ -84,6 +84,9 @@ Response
 "This document" means the textual OCR predictions. Even better, we can construct the original layout or page by sorting the bounding boxes from top left to the bottom right, in order to preserve the original context. The model no longer needs a dedicated NER architecture trained specifically for that document type. Even better when you add a short description to the some attributes. Instead, the extraction behavior is described through prompts and schemas.
 This is often called in-context learning from the mechanistic interpretability in machine learning. Basically, given enough constraint (contexts) an LLM can perform new "task" [3, 4, 5, 6]. This dramatically reduces onboarding effort for new domains. Also, LLMs can reason over larger contexts and use surrounding information to resolve ambiguities that are difficult for conventional sequence-labeling models [4]. Instead of maintaining separate models for every domain, organizations can use a single extraction platform that adapts through prompts, schemas, and business rules, which significantly reduces annotation costs, model maintenance and deployment complexity and time-to-market for new domains. The most important shift enabled by generative approach is moving from a model-centric workflow to a schema-centric workflow.
 
+![alt text](https://ksmdnl.github.io/images/mmir.png "Framework")
+*Multimodal information extraction*
+
 Before:
 
 Traditional approach: New domain → Label data → Train model → Evaluate → Deploy
@@ -92,8 +95,8 @@ After:
 
 Generative approach: New domain → Define schema → Configure prompt → Validate output → Deploy
 
-![alt text](https://ksmdnl.github.io/images/mmir.png "Framework")
-*Multimodal information extraction*
+![alt text](https://ksmdnl.github.io/images/ocrner.png "Framework")
+*End to End generative extraction*
 
 This does not eliminate the need for validation and quality assurance. Enterprise-grade systems still require governance, confidence estimation, business-rule validation, and human review where necessary. In some use cases, we also care about explainibility. For example, how do we know if the Company Name: Musterfirma GmbH is actually in the document? LLMs or big LLMs are usually pre-trained on web or large-scale dataset and it is possible that it generates what it had seen on the training set, which constitues an explanation about the prediction and which we actually want to avoid. One way to validate this is to match the OCRs output agains the generated entities, via string or semantic matching or the combination of both. That way we can now more sure whether LLM does NER, i.e., given a sarch space find the entities, or does a pure generation which can lead to hallucination. Here we have a multimodal workflow, vision from OCR and language from LLM. Instead of LLM, we can also use a vision-language model (VLM) so that we can add visual context, but it makes inference a lot slower and for the use case or business logic perhaps not a great trade-off.
 
