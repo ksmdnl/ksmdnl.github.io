@@ -51,14 +51,38 @@ redirect_from:
   In my current role, I focus on developing multi-modal machine learning systems for document understanding and ingestion, information extraction and retrieval, shipping them, as well as making them work reliably in production.
   This broadly consists of working with the data, building the suitable architecture or learning algorithm suitable for certain use case, training, evaluating and tracking experiments on the data using the best practices from studies, and building the workflow, end-to-end from users back to users.
   Best practices in MLOps are my bread and butter. Also, in the LLM-integrated products, I look at places to optimise the inference in terms of latency, scalability, etc.
-  <h2>Previous role</h2>
+  <h2>Previous roles</h2>
   Throughout my studies I had been working in various domains in which machine learning is applied. In the most recent one I studied the potential of Joint-Embedding Predictive Architecture (JEPA) for multimodal learning.
   JEPA is characterised at best by how a network/model/architecture learns about the data. One of its motivations is to learn the most useful features contained in the data, so that their representations can be used everywhere effectively.
   And because JEPA operates in a much lower dimension, it is much cheaper to develop, and thus a subject of a scaling study (since we are shown that the scaling law is supposedly real).
   It is shown in certain modalities or data source that JEPA in fact produces better representations than its counterparts.
   Given the architecture of JEPA and its learning algorithm, it is implied (at least by the authors) that JEPA should work in any multimodal setup, as long as there is some amount of mutual information contained accross the modalities for the multimodal representations to be meaningful.
   In a two-modality setup the architecture is quite trivial, the challenge relies in how do we know it learns the multimodal features. In my master thesis I developed a vision-language JEPA that scores better in modality-specific tasks, cross-modality tasks and multimodal tasks.
-  This serves as a basis for our publication on AACL-IJCNLP 2026 where I contributed as a co-author.
+  This serves as a basis for our publication on AACL-IJCNLP 2026 where I contributed as a co-author. <br>
+  Before that I was working with Luis Müller at Learning on Graphs Group at RWTH Aachen in the intersection of graph theory (expressivity) and machine learning (generalisation).
+  An expressive Graph Neural Network (GNN) or Graph Transformers means it can differentiate many similar graphs that are different.
+  In other words a model with a higher expressivity can be useful for example in chemistry for predicting molecular properties or generating new molecules depends heavily on identifying and counting specific substructures (like functional groups or rings), or in general
+  useful for anomaly prediction. However, this does not guarantee that the model generalizes on other domains or distribution.
+  Thus, studying its generalization power is also important.
+  In one of the project we studied the expressivity and generalisation of a variant of Transformers called Graph Transformers and applied it on graph data (NeurIPS 2024).
+  We implemented a tokenization that reconstructs the graph data (nodes and the node pairs, or edges) and theoreticaly proved that it is more expressive than GNNs and many Graph Transformers.
+  Through experiments across datasets we showed that it generalises better than many higher-order Graph Transformers and GNNs
+  and show that it is useful for out of domain or distribution downstream tasks (a.k.a. for real life problems).
+  One caveat is, though, that it performs by doing a triangular attention that can be expensive for big-sized graphs. <br>
+  During my bachelor study I was working with Andreas Bär in computer vision for autonomous driving. One of the crucial things to care for in AD is how the performance of a vision model, e.g., semantic segmentation, object detection, object tracking, depth estimation, etc., can be tracked or quantised or estimated.
+  Semantic segmentation, for instance, assigns each pixel on a camera a class and generates the user or planner a segmentation mask. A group of pixels can be classified as pedestrian, others as cars and so on.
+  Quantising and estimating the performance of the segmentation model, i.e., how good is the prediction quality in each given time?, would be a good start.
+  In Andreas Bär's work, it extends the prediction head of segmentation model with a reconstruction head that reconstructs the input image.
+  It works by training only to reconstruct the image given the representation of the input image that was only trained for segmentation and then to assume a correlation between the segmentation and the reconstruction
+  since both share a representation module or encoder. So a bad representation should mean a bad segmentation, formulated as a regression problem, and since we can compute the quality of the reconstructed image (e.g., PSNR, SSIM), we could estimate the segmentation performance.
+  So the trained model is calibrated on the validation dataset, i.e., the PSNR and the Mean Intersection over Union (mIoU) to get the regression parameters and apply these parameters on unseen data in online mode.
+  Basically, estimating the mIoU using the PSNR.
+  What about on object detection? The setup above works because the assumption holds, i.e., high correlation between the two predictions. I extended the framework to object detection model to estimate the Mean Average Precision (mAP) using the PSNR.
+  We observed a low correlation between the two and sure enough the estimation was way off. So we take a step back focus on other things.
+  So, mIoU(PSNR) works given the assumption. Naturally, it makes sense to try to improve on the correlation, because high correlation -> better estimate.
+  Initially, the reconstruction module was initialised randomly. Here we initialised it using the weights of the segmentation head. We can control how much the transfer is so we can see a gradient.
+  Further, we add the segmentation exposure to the reconstruction module by doing feature fusion on different prediction step. Also here we can control how much fusion is done.
+  The work (CVPR Workshop 2023) shows that the estimate gets better the more exposure, either by parameter initialisation or feature fusion or both, the reconstruction module get, which again confirmed our hypothesis and aligned with our assumption.
   <h2>Initial</h2>
   My interest in the field rose when I was active as a working student in the automobile industry, specifically at IAV, for over few years.
   During that time I had the opportunity to work in a engaging team, where I learned a lot about the on-board diagnostic systems on vehicles 
@@ -98,8 +122,8 @@ redirect_from:
 </p>
 <h2>News</h2>
 <ul>
+  <li><b>October 2026</b>: Our paper <a href="https://aclanthology.org/2026.aacl-long.232">Latent Prediction Needs Alignment: A Controlled Study of Joint-Embedding Predictive Vision–Language Learning</a> is accepted for AACL-IJCNLP 2026.</li>
   <li><b>September 2024</b>: Our paper <a href="https://github.com/luis-mueller/towards-principled-gts/tree/main">Towards Principled Graph Transformers</a> is accepted for NeurIPS 2024.</li>
-  <!-- <li><b>Mar 2024</b>: Our paper <a href="https://github.com/luis-mueller/towards-principled-gts/tree/main">Towards Principled Graph Transformers</a> is accepted for BGPT ICLR 2024.</li> -->
   <li><b>April 2023</b>: Our paper <a href="https://github.com/ifnspaml/PerfPredRecV2">PerfPredRecV2</a> is accepted for WACV CVPR 2023.</li>
   <li><b>June 2023</b>: Our paper <a href="https://github.com/ifnspaml/PerfPredRecV2">PerfPredRecV2</a> is published for WACV CVPR 2023.</li>
 </ul>
@@ -110,18 +134,12 @@ redirect_from:
     <!-- <a href="https://point2vec.ka.codes/" class="special-link"> -->
       <p>
         <img class="align-left teaser">
-        <b>Latent Prediction Needs Alignment: A Controlled Study of Joint-Embedding Predictive Vision--Language Learning</b>
+        <b>Latent Prediction Needs Alignment: A Controlled Study of Joint-Embedding Predictive Vision-Language Learning</b>
         </br>
         Mohammad Kohankhaki, <u>Daniel Kusuma</u>*, Shirin Salehi, Carsten Kamp, Sigrid Brell-Cokcanm, Anke Schmeink
         </br>
-        AACL-IJCNLP, 2026, to appear.
+        AACL-IJCNLP, 2026.
         </br>
-        <!-- <a class="btn btn--research" href="https://arxiv.org/abs/2401.10119">
-          <span class="icon" style="margin-right: 0em;">
-            <i class="fas fa-file-pdf"></i>
-          </span>
-          <span>Paper</span>
-        </a> -->
         <a class="btn btn--research" href="https://github.com/mohkoh19/x-jepa">
           <span class="icon" style="margin-right: 0em;">
             <i class="fab fa-github"></i>
