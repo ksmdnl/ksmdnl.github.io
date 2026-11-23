@@ -21,7 +21,7 @@ During my bachelor study I was working with Andreas Bär in computer vision for 
 Since real life data is most certainly noisy and there are scenarios in which the system could be injected with an adversarial feature (so called adversarial attacks), quantising and estimating the performance of the segmentation model, i.e., how good is the prediction quality in each given time?, would be a good start. In Andreas Bär's work [1], it extends the prediction head of segmentation model with a reconstruction head that reconstructs the input image. It works by training only to reconstruct the image given the representation of the input image that was only trained for segmentation and then to assume a correlation between the segmentation and the reconstruction since both share a representation module or encoder.
 
 ![alt text](https://ksmdnl.github.io/images/pp.png "Framework")
-*Example of segmentation on Cityscape for scene understanding [3]*
+*The performance estimation framework by Bär et al [1]*
 
 So a bad representation should mean a bad segmentation, formulated as a regression problem, and since we can compute the quality of the reconstructed image (e.g., PSNR, SSIM), we could estimate the segmentation performance. So the trained model is calibrated on the validation dataset, i.e., the PSNR and the Mean Intersection over Union (mIoU) to get the regression parameters and apply these parameters on unseen data in online mode. Basically, estimating the mIoU using the PSNR.
 
@@ -29,12 +29,12 @@ So a bad representation should mean a bad segmentation, formulated as a regressi
 *mIou (left) correlates with PSNR (right) in any given attack proportion [1]*
 
 ![alt text](https://ksmdnl.github.io/images/calibration.png "Framework")
-*(Non)-linear relationship PSNR vs mIoU on the validation set, used to get the regression parameters [1]*
+*(Non)-linear relationship PSNR vs mIoU on the validation set, used to get the regression parameters [1].*
 
 What about on object detection? The setup above works because the assumption holds, i.e., high correlation between the two predictions. I extended the framework to object detection model to estimate the Mean Average Precision (mAP) using the PSNR. We observed a low correlation between the two and sure enough the estimation was way off. So we take a step back focus on other things. So, mIoU(PSNR) works given the assumption. Naturally, it makes sense to try to improve on the correlation, because high correlation -> better estimate. Initially, the reconstruction module was initialised randomly. Here we initialised it using the weights of the segmentation head. We can control how much the transfer is so we can see a gradient. Further, we add the segmentation exposure to the reconstruction module by doing feature fusion on different prediction step. Also here we can control how much fusion is done. The work (CVPR Workshop 2023) shows that the estimate gets better the more exposure, either by parameter initialisation or feature fusion or both, the reconstruction module get, which again confirmed our hypothesis and aligned with our assumption.
 
 ![alt text](https://ksmdnl.github.io/images/pp_improved_1.png "Framework")
-*(Non)-linear relationship PSNR vs mIoU on the validation set, used to get the regression parameters [1]*
+* Parameter initialisation (purple) and information or feature fusion (bluue) on top of the estimation framework [2].*
 
 [1] Bär, Andreas & Klingner, Marvin & Löhdefink, Jonas & Hüger, Fabian & Schlicht, Peter & Fingscheidt, Tim. (2022). Performance Prediction for Semantic Segmentation by a Self-Supervised Image Reconstruction Decoder. 4398-4407. 10.1109/CVPRW56347.2022.00486.
 [2] Bär, Andreas & Kusuma, Daniel & Fingscheidt, Tim. “Improvements to Image Reconstruction-Based Performance Prediction for Semantic Segmentation in Highly Automated Driving.” 2023 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW) (2023): 219-229.
