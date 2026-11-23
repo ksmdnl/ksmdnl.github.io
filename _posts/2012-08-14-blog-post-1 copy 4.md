@@ -43,8 +43,9 @@ But let's be optimistic and not be a downer, as many pre-trained OCRs, such as t
 In many enterprise products, each new customer domain requires its own specialized NER model.
 
 For example:
+
 |   Domain   |         Required Entities        |
-|:----------:|:--------------------------------:|
+|------------|----------------------------------|
 | Invoices   | Invoice Number, Vendor, Amount   |
 | Insurance  | Policy Number, Claim ID          |
 | Logistics  | Container ID, Port, Vessel       |
@@ -80,29 +81,22 @@ Response
 }
 ```
 
-The model no longer needs a dedicated NER architecture trained specifically for that document type. Even better when you add a short description to the some attributes. Instead, the extraction behavior is described through prompts and schemas.
-This is often called in-context learning from the mechanistic interpretability in machine learning. Basically, given enough constraint (contexts) an LLM can perform new "task" [3, 4, 5, 6]. This dramatically reduces onboarding effort for new domains. Also, LLMs can reason over larger contexts and use surrounding information to resolve ambiguities that are difficult for conventional sequence-labeling models.[4]
+"This document" means the textual OCR predictions. Even better, we can construct the original layout or page by sorting the bounding boxes from top left to the bottom right, in order to preserve the original context. The model no longer needs a dedicated NER architecture trained specifically for that document type. Even better when you add a short description to the some attributes. Instead, the extraction behavior is described through prompts and schemas.
+This is often called in-context learning from the mechanistic interpretability in machine learning. Basically, given enough constraint (contexts) an LLM can perform new "task" [3, 4, 5, 6]. This dramatically reduces onboarding effort for new domains. Also, LLMs can reason over larger contexts and use surrounding information to resolve ambiguities that are difficult for conventional sequence-labeling models [4]. Instead of maintaining separate models for every domain, organizations can use a single extraction platform that adapts through prompts, schemas, and business rules, which significantly reduces annotation costs, model maintenance and deployment complexity and time-to-market for new domains. The most important shift enabled by generative approach is moving from a model-centric workflow to a schema-centric workflow.
 
-Instead of maintaining separate models for every domain, organizations can use a single extraction platform that adapts through prompts, schemas, and business rules, which significantly reduces annotation costs, model maintenance and deployment complexity and time-to-market for new domains.
-
-The most important shift enabled by generative AI is moving from a model-centric workflow to a schema-centric workflow.
+Before:
 
 Traditional approach: New domain → Label data → Train model → Evaluate → Deploy
+
+After:
+
 Generative approach: New domain → Define schema → Configure prompt → Validate output → Deploy
 
-This does not eliminate the need for validation and quality assurance. Enterprise-grade systems still require governance, confidence estimation, business-rule validation, and human review where necessary.
+This does not eliminate the need for validation and quality assurance. Enterprise-grade systems still require governance, confidence estimation, business-rule validation, and human review where necessary. In some use cases, we also care about explainibility. For example, how do we know if the Company Name: Musterfirma GmbH is actually in the document? LLMs or big LLMs are usually pre-trained on web or large-scale dataset and it is possible that it generates what it had seen on the training set, which constitues an explanation about the prediction and which we actually want to avoid. One way to validate this is to match the OCRs output agains the generated entities, via string or semantic matching or the combination of both. That way we can now more sure whether LLM does NER, i.e., given a sarch space find the entities, or does a pure generation which can lead to hallucination. Here we have a multimodal workflow, vision from OCR and language from LLM. Instead of LLM, we can also use a vision-language model (VLM) so that we can add visual context, but it makes inference a lot slower and for the use case or business logic perhaps not a great trade-off.
 
-However, the effort shifts away from expensive data annotation and model retraining toward schema design and validation logic.
+A slightly more powerful method would be to use a zero-shot NER module such as GLiNER. With a similar method, we propate each chunk of the document to get as many predictions as the given classes and rank the predictions over all chunks. Also, we can do a batch processing here, optimising the inference time. Though, due to the model capacity this may not as generalizeable as the one with LLM. However, overall, the effort shifts away from expensive data annotation and model retraining toward schema design and validation logic.
 
-Conclusion
-
-Document-based NER is much more than identifying names and numbers in text. Real-world solutions must address OCR quality, document layouts, validation requirements, and multi-step processing workflows.
-
-Traditional machine-learning approaches often deliver strong performance within a specific domain but struggle to scale across many domains because each new use case requires additional labeling, training, and maintenance.
-
-Generative AI offers a compelling alternative. By leveraging the semantic understanding and instruction-following capabilities of large language models, organizations can define new extraction tasks through schemas and prompts rather than building dedicated models for every domain.
-
-As document processing systems continue to evolve, generative NER has the potential to transform entity extraction from a model-training problem into a configurable information extraction platform, enabling faster onboarding, lower maintenance costs, and greater scalability across diverse business domains.
+Document-based NER is much more than identifying names and numbers in text. Real-world solutions must address OCR quality, document layouts, validation requirements, and multi-step processing workflows. Traditional machine-learning approaches often deliver strong performance within a specific domain but struggle to scale across many domains because each new use case requires additional labeling, training, and maintenance. Generative approach offers a compelling alternative. By leveraging the semantic understanding and instruction-following capabilities of large language models, organizations can define new extraction tasks through schemas and prompts rather than building dedicated models for every domain. As document processing systems continue to evolve, generative NER has the potential to transform entity extraction from a model-training problem into a configurable information extraction platform, enabling faster onboarding, lower maintenance costs, and greater scalability across diverse business domains.
 
 Sources:
 
