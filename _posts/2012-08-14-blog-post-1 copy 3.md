@@ -11,7 +11,7 @@ During my master study I was working with Luis Müller at Learning on Graphs Gro
 In other words a model with a higher expressivity can be useful for example in chemistry for predicting molecular properties or generating new molecules depends heavily on identifying and counting specific substructures (like functional groups or rings), or in general useful for anomaly prediction. However, this does not guarantee that the model generalizes on other domains or distribution.
 Thus, studying its generalization power is also important. In one of the project we studied the expressivity and generalisation of a variant of Transformers called Graph Transformers and applied it on graph data (NeurIPS 2024).
 
-![alt text](https://ksmdnl.github.io/images/triangular_att_3.png "Triangular attention")
+![alt text](https://ksmdnl.github.io/images/triangular_att_2.png "Triangular attention")
 *[1]*
 
 We implemented a tokenization that reconstructs the graph data (nodes and the node pairs, or edges) and theoreticaly proved that it is more expressive than GNNs and many Graph Transformers.
