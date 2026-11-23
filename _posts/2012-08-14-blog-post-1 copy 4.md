@@ -104,10 +104,16 @@ Generative AI offers a compelling alternative. By leveraging the semantic unders
 
 As document processing systems continue to evolve, generative NER has the potential to transform entity extraction from a model-training problem into a configurable information extraction platform, enabling faster onboarding, lower maintenance costs, and greater scalability across diverse business domains.
 
-Sources
+Sources:
+
 [1] NIST Message Understanding Conference (MUC-7) Named Entity Definition: https://www-nlpir.nist.gov/related_projects/muc/proceedings/ne_task.html
+
 [2] NIST OCR Research and Document Processing Overview: https://www.nist.gov/itl/iad/image-group/programsprojects/legacy-projects/optical-character-recognition-ocr
+
 [3] Zhan et al., Assessment of Generative Named Entity Recognition in the Era of Large Language Models, ACL Findings EMNLP 2026: https://aclanthology.org/2026.findings-emnlp.1706/
+
 [4] Improving Few-Shot Named Entity Recognition for Large Language Models Using Structured Dynamic Prompting with Retrieval-Augmented Generation, npj Artificial Intelligence: https://www.nature.com/articles/s44387-025-00062-2
+
 [5] Dong, Qingxiu et al. “A Survey on In-context Learning.” Conference on Empirical Methods in Natural Language Processing (2022).
+
 [6] In-context Learning and Induction Heads https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html
