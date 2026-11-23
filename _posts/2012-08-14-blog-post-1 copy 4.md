@@ -91,6 +91,7 @@ Traditional approach: New domain → Label data → Train model → Evaluate →
 After:
 
 Generative approach: New domain → Define schema → Configure prompt → Validate output → Deploy
+
 ![alt text](https://ksmdnl.github.io/images/mmir.png "Framework")
 *Multimodal information extraction*
 
