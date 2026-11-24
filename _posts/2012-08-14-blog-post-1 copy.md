@@ -34,7 +34,19 @@ So a bad representation should mean a bad segmentation, formulated as a regressi
 What about on object detection? The setup above works because the assumption holds, i.e., high correlation between the two predictions. I extended the framework to object detection model to estimate the Mean Average Precision (mAP) using the PSNR. We observed a low correlation between the two and sure enough the estimation was way off. So we take a step back focus on other things. So, mIoU(PSNR) works given the assumption. Naturally, it makes sense to try to improve on the correlation, because high correlation -> better estimate. Initially, the reconstruction module was initialised randomly. Here we initialised it using the weights of the segmentation head. We can control how much the transfer is so we can see a gradient. Further, we add the segmentation exposure to the reconstruction module by doing feature fusion on different prediction step. Also here we can control how much fusion is done. The work (CVPR Workshop 2023) shows that the estimate gets better the more exposure, either by parameter initialisation or feature fusion or both, the reconstruction module get, which again confirmed our hypothesis and aligned with our assumption.
 
 ![alt text](https://ksmdnl.github.io/images/pp_improved_1.png "Framework")
-* Parameter initialisation (purple) and information or feature fusion (bluue) on top of the estimation framework [2].*
+* Parameter initialisation (purple) and information or feature fusion (blue) on top of the estimation framework [2].*
+
+Here is a demo:
+
+<!--
+Source - https://stackoverflow.com/a/10530266
+Posted by huon, modified by community. See post 'Timeline' for change history
+Retrieved 2026-11-24, License - CC BY-SA 3.0
+-->
+
+<iframe width="420" height="315" src="https://www.youtube.com/watch?v=8wde_ACGk5U" frameborder="0" allowfullscreen></iframe>
+
+In the demo we see on the top lef the original image (input), the top right the reconstructed image by the image reconstruction decoder. Middle left is segmentation output of the image. On the middle right is a monitor about the state of the estimated performance, whether the estimate constitutes a degradation etc.
 
 [1] Bär, Andreas & Klingner, Marvin & Löhdefink, Jonas & Hüger, Fabian & Schlicht, Peter & Fingscheidt, Tim. (2022). Performance Prediction for Semantic Segmentation by a Self-Supervised Image Reconstruction Decoder. 4398-4407. 10.1109/CVPRW56347.2022.00486.
 [2] Bär, Andreas & Kusuma, Daniel & Fingscheidt, Tim. “Improvements to Image Reconstruction-Based Performance Prediction for Semantic Segmentation in Highly Automated Driving.” 2023 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW) (2023): 219-229.
