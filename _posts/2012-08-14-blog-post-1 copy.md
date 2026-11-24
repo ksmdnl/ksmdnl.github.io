@@ -44,7 +44,8 @@ Posted by huon, modified by community. See post 'Timeline' for change history
 Retrieved 2026-11-24, License - CC BY-SA 3.0
 -->
 
-<iframe width="420" height="315" src="https://www.youtube.com/watch?v=8wde_ACGk5U" frameborder="0" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8wde_ACGk5U?si=RcrD8WOPx8TSaLC8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 In the demo we see on the top lef the original image (input), the top right the reconstructed image by the image reconstruction decoder. Middle left is segmentation output of the image. On the middle right is a monitor about the state of the estimated performance, whether the estimate constitutes a degradation etc.
 
